@@ -1,0 +1,46 @@
+.list-item-container {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+.failure-text {
+  color: #ffffff;
+}
+
+.casts-list-container {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  width: 100%;
+  background-color: transparent;
+  padding-left: 0px;
+  overflow-x: auto;
+}
+
+.profile-img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.slide-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.actor-name {
+  color: #ffffff;
+  font-size: 10px;
+  font-family: 'Robo';
+}
+
+.actor-role {
+  color: grey;
+  font-size: 8px;
+  font-family: 'Robo';
+  margin-top: 0px;
+}
