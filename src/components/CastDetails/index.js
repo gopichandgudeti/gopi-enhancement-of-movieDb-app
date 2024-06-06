@@ -1,6 +1,5 @@
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
-import Slider from 'react-slick'
 import './index.css'
 
 import 'slick-carousel/slick/slick.css'
@@ -72,11 +71,6 @@ class CastDetails extends Component {
 
   renderSuccessView = () => {
     const {castDetails} = this.state
-    const settings = {
-      dots: false,
-      slidesToShow: 6,
-      slidesToScroll: 6,
-    }
     return (
       <ul className="casts-list-container swiper swiper-initialized swiper-horizontal swiper-pointer-events detail-castList">
         {castDetails.cast.map(each => (
@@ -105,7 +99,7 @@ class CastDetails extends Component {
       case apiStatusConstants.failure:
         return this.renderFailureView()
       default:
-        null
+        return null
     }
   }
 

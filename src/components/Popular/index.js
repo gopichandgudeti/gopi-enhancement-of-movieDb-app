@@ -31,7 +31,7 @@ class Popular extends Component {
     }
     const response = await fetch(url, options)
     const data = await response.json()
-    //console.log(data)
+    // console.log(data)
     if (response.ok) {
       const fetchedData = data.results.map(movie => ({
         adult: movie.adult,
@@ -62,11 +62,16 @@ class Popular extends Component {
   renderSuccessView = () => {
     const {moviesList} = this.state
     return (
-      <ul className="movies-list-container">
-        {moviesList.map(item => (
-          <MovieCard movieData={item} key={item.id} />
-        ))}
-      </ul>
+      <div className="app-container">
+        <Header />
+        <div className="app-bg-container">
+          <ul className="movies-list-container">
+            {moviesList.map(item => (
+              <MovieCard movieData={item} key={item.id} />
+            ))}
+          </ul>
+        </div>
+      </div>
     )
   }
 
@@ -94,12 +99,7 @@ class Popular extends Component {
   }
 
   render() {
-    return (
-      <div className="app-container">
-        <Header />
-        <div className="app-bg-container">{this.renderVideosView()}</div>
-      </div>
-    )
+    return <>{this.renderVideosView()}</>
   }
 }
 

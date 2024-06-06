@@ -28,7 +28,7 @@ class UpcomingMovies extends Component {
       'https://api.themoviedb.org/3/movie/upcoming?api_key=32cd164bcc55359e96c2633174a9359b&language=en-US&page=1'
     const response = await fetch(url)
     const data = await response.json()
-    //console.log(data)
+    // console.log(data)
     if (response.ok) {
       const fetchedData = data.results.map(movie => ({
         adult: movie.adult,
@@ -59,11 +59,16 @@ class UpcomingMovies extends Component {
   renderSuccessView = () => {
     const {moviesList} = this.state
     return (
-      <ul className="movies-list-container">
-        {moviesList.map(item => (
-          <MovieCard movieData={item} key={item.id} />
-        ))}
-      </ul>
+      <div className="app-container">
+        <Header />
+        <div className="app-bg-container">
+          <ul className="movies-list-container">
+            {moviesList.map(item => (
+              <MovieCard movieData={item} key={item.id} />
+            ))}
+          </ul>
+        </div>
+      </div>
     )
   }
 
@@ -92,12 +97,7 @@ class UpcomingMovies extends Component {
 
   render() {
     const {moviesList} = this.state
-    return (
-      <div className="app-container">
-        <Header />
-        <div className="app-bg-container">{this.renderVideosView()}</div>
-      </div>
-    )
+    return <>{this.renderVideosView()}</>
   }
 }
 

@@ -21,23 +21,17 @@ class Header extends Component {
     return (
       <nav className="nav-bar-bg-container fixed-top">
         <h1 className="app-logo">movieDB</h1>
-        <div>
-          <Link to="/">
-            <button type="button" className="nav-btn">
-              Popular
-            </button>
+        <div className="nav-links-container">
+          <Link to="/" className="nav-link">
+            <h1 className="nav-link-text">Popular</h1>
           </Link>
 
-          <Link to="/top-rated">
-            <button type="button" className="nav-btn">
-              Top Rated
-            </button>
+          <Link to="/top-rated" className="nav-link">
+            <h1 className="nav-link-text">Top Rated</h1>
           </Link>
 
-          <Link to="/upcoming">
-            <button type="button" className="nav-btn">
-              Upcoming
-            </button>
+          <Link to="/upcoming" className="nav-link">
+            <h1 className="nav-link-text">Upcoming</h1>
           </Link>
         </div>
         <div className="search-container">
@@ -48,12 +42,12 @@ class Header extends Component {
             onChange={this.onChangeSearchInput}
             value={searchInput}
           />
-          <Link
-            to={`/${searchInput}`}
-            className="link-container"
-            
-          >
-            <button type="button" className="search-btn" onClick={this.onClickSearchBtn}>
+          <Link to={`/${searchInput}`} className="link-container">
+            <button
+              type="button"
+              className="search-btn"
+              onClick={this.onClickSearchBtn}
+            >
               Search
             </button>
           </Link>

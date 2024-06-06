@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {Route, Switch, Redirect} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 import './App.css'
 
 import Popular from './components/Popular'
@@ -13,7 +13,7 @@ class App extends Component {
   render() {
     return (
       <Switch>
-        <Route  path="/" component={Popular} />
+        <Route exact path="/" component={Popular} />
         <Route exact path="/top-rated" component={TopRatedMovies} />
         <Route exact path="/upcoming" component={UpcomingMovies} />
         <Route exact path="/videos/:id" component={SingleMovieDetails} />

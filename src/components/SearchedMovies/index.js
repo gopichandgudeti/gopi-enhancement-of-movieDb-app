@@ -26,13 +26,13 @@ class SearchedMovies extends Component {
     const {match} = this.props
     const {params} = match
     const {searchInput} = params
-    //console.log(searchInput)
+    // console.log(searchInput)
     this.setState({apiStatus: apiStatusConstants.inProgress})
     const url = `https://api.themoviedb.org/3/search/movie?api_key=32cd164bcc55359e96c2633174a9359b&language=en-US&query=${searchInput}&page=1`
     const response = await fetch(url)
     if (response.ok) {
       const data = await response.json()
-      //console.log(data)
+      // console.log(data)
       const fetchedData = data.results.map(movie => ({
         adult: movie.adult,
         backdropPath: movie.backdrop_path,
@@ -62,11 +62,16 @@ class SearchedMovies extends Component {
   renderSuccessView = () => {
     const {moviesList} = this.state
     return (
-      <ul className="movies-list-container">
-        {moviesList.map(item => (
-          <MovieCard movieData={item} key={item.id} />
-        ))}
-      </ul>
+      <div className="app-container">
+        <Header />
+        <div className="app-bg-container">
+          <ul className="movies-list-container">
+            {moviesList.map(item => (
+              <MovieCard movieData={item} key={item.id} />
+            ))}
+          </ul>
+        </div>
+      </div>
     )
   }
 
@@ -94,12 +99,7 @@ class SearchedMovies extends Component {
   }
 
   render() {
-    return (
-      <div className="app-container">
-        <Header />
-        <div className="app-bg-container">{this.renderVideosView()}</div>
-      </div>
-    )
+    return <>{this.renderVideosView()}</>
   }
 }
 

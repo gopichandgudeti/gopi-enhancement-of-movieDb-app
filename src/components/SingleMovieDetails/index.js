@@ -81,29 +81,34 @@ class SingleMovieDetails extends Component {
     const {movieData, movieId} = this.state
 
     return (
-      <div className="movie-details-section-bg-container">
-        <div className="movie-poster-details-container">
-          <img
-            src={`https://image.tmdb.org/t/p/original${movieData.posterPath}`}
-            className="movie-poster"
-            alt="poster"
-          />
-          <div className="movie-details-container">
-            <h1>{movieData.title}</h1>
-            <p>Rating: {movieData.voteAverage}</p>
-            <p>Duration: {movieData.runtime}</p>
-            <div className="movie-genres">
-              {movieData.genres.map(each => (
-                <p className="genre">Genre: {each.name}</p>
-              ))}
+      <div className="app-container">
+        <Header />
+        <div className="movie-details-bg-container">
+          <div className="movie-details-section-bg-container">
+            <div className="movie-poster-details-container">
+              <img
+                src={`https://image.tmdb.org/t/p/original${movieData.posterPath}`}
+                className="movie-poster"
+                alt="poster"
+              />
+              <div className="movie-details-container">
+                <h1>{movieData.title}</h1>
+                <p>Rating: {movieData.voteAverage}</p>
+                <p>Duration: {movieData.runtime}</p>
+                <div className="movie-genres">
+                  {movieData.genres.map(each => (
+                    <p className="genre">Genre: {each.name}</p>
+                  ))}
+                </div>
+                <p>Release date: {movieData.releaseDate}</p>
+                <p className="movie-overview">Overview: {movieData.overview}</p>
+              </div>
             </div>
-            <p>Release date: {movieData.releaseDate}</p>
-            <p className="movie-overview">Overview: {movieData.overview}</p>
+            <div className="cast-details-section">
+              <h1>Casts</h1>
+              <CastDetails theMovieId={movieId} />
+            </div>
           </div>
-        </div>
-        <div className="cast-details-section">
-          <h1>Casts</h1>
-          <CastDetails theMovieId={movieId} />
         </div>
       </div>
     )
@@ -131,14 +136,7 @@ class SingleMovieDetails extends Component {
   }
 
   render() {
-    return (
-      <div className="app-container">
-        <Header />
-        <div className="movie-details-bg-container">
-          {this.renderMovieDetails()}
-        </div>
-      </div>
-    )
+    return <>{this.renderMovieDetails()}</>
   }
 }
 
