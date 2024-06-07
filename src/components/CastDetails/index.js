@@ -62,26 +62,26 @@ class CastDetails extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="products-details-loader-container" data-testid="loader">
-      <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
+    <div className='products-details-loader-container' data-testid='loader'>
+      <Loader type='ThreeDots' color='#0b69ff' height='50' width='50' />
     </div>
   )
 
-  renderFailureView = () => <h1 className="failure-text">Not Found</h1>
+  renderFailureView = () => <h1 className='failure-text'>Not Found</h1>
 
   renderSuccessView = () => {
     const {castDetails} = this.state
     return (
-      <ul className="casts-list-container swiper swiper-initialized swiper-horizontal swiper-pointer-events detail-castList">
+      <ul className='casts-list-container swiper swiper-initialized swiper-horizontal swiper-pointer-events detail-castList'>
         {castDetails.cast.map(each => (
-          <li className="list-item-container">
+          <li className='list-item-container'>
             <img
               src={`https://image.tmdb.org/t/p/original${each.profilePath}`}
-              className="profile-img"
-              alt="profile"
+              className='profile-img'
+              alt='profile'
             />
-            <p className="actor-name">{each.name}</p>
-            <p className="actor-role">{each.character}</p>
+            <p className='actor-name'>{each.name}</p>
+            <p className='actor-role'>{each.character}</p>
           </li>
         ))}
       </ul>
@@ -105,7 +105,7 @@ class CastDetails extends Component {
 
   render() {
     return (
-      <div className="cast-details-bg-container">{this.renderCastDetals()}</div>
+      <div className='cast-details-bg-container'>{this.renderCastDetals()}</div>
     )
   }
 }
