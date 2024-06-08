@@ -1,6 +1,7 @@
-import './index.css'
 import {Link} from 'react-router-dom'
 import {Component} from 'react'
+
+import './index.css'
 
 class Header extends Component {
   state = {
