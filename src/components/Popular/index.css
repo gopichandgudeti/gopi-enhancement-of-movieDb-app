@@ -21,3 +21,10 @@
   list-style-type: none;
   padding-left: 0px;
 }
+
+.pagination-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: flex-end;
+}

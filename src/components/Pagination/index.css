@@ -1,0 +1,29 @@
+.pagination-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.prev-next-btns {
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  background-color: transparent;
+  height: 25px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 3px;
+  font-family: 'Roboto';
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.page-number {
+  font-family: 'Roboto';
+  font-size: 12px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-right: 10px;
+  margin-left: 10px;
+}

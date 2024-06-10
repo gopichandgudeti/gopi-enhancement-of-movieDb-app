@@ -2,6 +2,7 @@ import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 import Header from '../Header'
 import MovieCard from '../MovieCard'
+import Pagination from '../Pagination'
 
 import './index.css'
 
@@ -22,10 +23,30 @@ class TopRatedMovies extends Component {
     this.getMovies()
   }
 
-  getMovies = async () => {
+  getFormattedData = data => ({
+    totalPages: data.total_pages,
+    totalResults: data.total_results,
+    results: data.results.map(movie => ({
+      adult: movie.adult,
+      backdropPath: movie.backdrop_path,
+      genreIds: movie.genre_ids,
+      id: movie.id,
+      originalLanguage: movie.original_language,
+      originalTitle: movie.original_title,
+      overview: movie.overview,
+      popularity: movie.popularity,
+      posterPath: movie.poster_path,
+      releaseDate: movie.release_date,
+      title: movie.title,
+      video: movie.video,
+      voteAverage: movie.vote_average,
+      voteCount: movie.vote_count,
+    })),
+  })
+
+  getMovies = async (page = 1) => {
     this.setState({apiStatus: apiStatusConstants.inProgress})
-    const url =
-      'https://api.themoviedb.org/3/movie/top_rated?api_key=32cd164bcc55359e96c2633174a9359b&language=en-US&page=1'
+    const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=32cd164bcc55359e96c2633174a9359b&language=en-US&page=${page}`
     const options = {
       method: 'GET',
     }
@@ -33,22 +54,7 @@ class TopRatedMovies extends Component {
     const data = await response.json()
     // console.log(data)
     if (response.ok) {
-      const fetchedData = data.results.map(movie => ({
-        adult: movie.adult,
-        backdropPath: movie.backdrop_path,
-        genreIds: movie.genre_ids,
-        id: movie.id,
-        originalLanguage: movie.original_language,
-        originalTitle: movie.original_title,
-        overview: movie.overview,
-        popularity: movie.popularity,
-        posterPath: movie.poster_path,
-        releaseDate: movie.release_date,
-        title: movie.title,
-        video: movie.video,
-        voteAverage: movie.vote_average,
-        voteCount: movie.vote_count,
-      }))
+      const fetchedData = this.getFormattedData(data)
 
       this.setState({
         moviesList: fetchedData,
@@ -66,10 +72,16 @@ class TopRatedMovies extends Component {
         <Header />
         <div className="app-bg-container">
           <ul className="movies-list-container">
-            {moviesList.map(item => (
+            {moviesList.results.map(item => (
               <MovieCard movieData={item} key={item.id} />
             ))}
           </ul>
+          <div className="pagination-container">
+            <Pagination
+              totalPages={moviesList.totalPages}
+              apiCallback={this.getMovies}
+            />
+          </div>
         </div>
       </div>
     )
