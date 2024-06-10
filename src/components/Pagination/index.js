@@ -2,11 +2,7 @@ import {Component} from 'react'
 import './index.css'
 
 class Pagination extends Component {
-  state = {
-    pageNo: 1,
-  }
-
-  onNextPage = () => {
+  /* onNextPage = () => {
     const {totalPages, apiCallback} = this.props
     this.setState(
       prevState => {
@@ -41,10 +37,20 @@ class Pagination extends Component {
         apiCallback(pageNo)
       },
     )
+  } */
+
+  onNextPage = () => {
+    const {onIncreasePage} = this.props
+    onIncreasePage()
+  }
+
+  onPrevPage = () => {
+    const {onDecreasePage} = this.props
+    onDecreasePage()
   }
 
   render() {
-    const {pageNo} = this.state
+    const {pageNo} = this.props
 
     return (
       <div className="pagination-container">

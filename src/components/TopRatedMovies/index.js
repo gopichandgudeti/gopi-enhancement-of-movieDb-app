@@ -17,6 +17,7 @@ class TopRatedMovies extends Component {
   state = {
     moviesList: [],
     apiStatus: apiStatusConstants.initial,
+    pageNo: 1,
   }
 
   componentDidMount() {
@@ -65,8 +66,45 @@ class TopRatedMovies extends Component {
     }
   }
 
-  renderSuccessView = () => {
+  onIncreasePage = () => {
     const {moviesList} = this.state
+    const {totalPages} = moviesList
+
+    this.setState(
+      prevState => {
+        if (prevState.pageNo < totalPages) {
+          return {
+            pageNo: prevState.pageNo + 1,
+          }
+        }
+        return prevState
+      },
+      () => {
+        const {pageNo} = this.state
+        this.getMovies(pageNo)
+      },
+    )
+  }
+
+  onDecreasePage = () => {
+    this.setState(
+      prevState => {
+        if (prevState.pageNo > 1) {
+          return {
+            pageNo: prevState.pageNo - 1,
+          }
+        }
+        return prevState
+      },
+      () => {
+        const {pageNo} = this.state
+        this.getMovies(pageNo)
+      },
+    )
+  }
+
+  renderSuccessView = () => {
+    const {moviesList, pageNo} = this.state
     return (
       <div className="app-container">
         <Header />
@@ -78,8 +116,9 @@ class TopRatedMovies extends Component {
           </ul>
           <div className="pagination-container">
             <Pagination
-              totalPages={moviesList.totalPages}
-              apiCallback={this.getMovies}
+              pageNo={pageNo}
+              onIncreasePage={this.onIncreasePage}
+              onDecreasePage={this.onDecreasePage}
             />
           </div>
         </div>
